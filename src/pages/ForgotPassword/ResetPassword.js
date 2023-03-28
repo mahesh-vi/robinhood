@@ -104,7 +104,7 @@ export default class ResetPassword extends Component {
                 <Loader loading={this.state.loading} />
                 <View style={{ marginHorizontal: 20, marginVertical: 15, }}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.goBack()} />
+                        <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.goBack()} />
                         <View style={{ marginLeft: 20 }}>
                             <Text style={[StyleApp.headerText]}>Reset Password</Text>
                             <Text style={[StyleApp.headerSubText]}>Set your new password</Text>

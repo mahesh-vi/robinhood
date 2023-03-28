@@ -69,7 +69,7 @@ export default class ZoneModal extends Component {
                         })}
                         </View>
                     </View>
-                    <Ionicons name={'ios-arrow-round-forward'} size={40} style={{ color: '#4cab83', justifyContent: 'flex-end', right: -20 }} />
+                    <Ionicons name={'ios-arrow-round-forward'} size={30} style={{ color: '#4cab83', justifyContent: 'flex-end', right: -20 }} />
 
                 </View>
             </TouchableOpacity>

@@ -104,7 +104,7 @@ export default class UploadDriveImage extends Component {
 
 
                     <View style={{ flexDirection: 'row', marginVertical: 10 }}>
-                        <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.goBack()} />
+                        <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.goBack()} />
                         <View style={{ marginLeft: 20 }}>
                             <Text style={[StyleApp.headerText]}>{`Upload Drive's Image`}</Text>
                             <Text style={[StyleApp.headerSubText]}>{'Upload drive images here'}</Text>

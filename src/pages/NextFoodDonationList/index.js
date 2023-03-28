@@ -115,7 +115,7 @@ export default class NextFoodDonationList extends Component {
 
 
                     <View style={{ flexDirection: 'row', marginVertical: 10, justifyContent: 'space-between' }}>
-                        <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.goBack()} />
+                        <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.goBack()} />
 
                         <View style={{ marginLeft: 10 }}>
                             <Text style={[StyleApp.headerText]}>Food Donation Drive</Text>

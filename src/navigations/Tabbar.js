@@ -51,7 +51,7 @@ const TabBar = (props) => {
           navigation.navigate('CreateDrive');
         }
       }}>
-        <FeatherIcon name={'plus-circle'} size={40} color={StyleApp.primaryColor.color} />
+        <FeatherIcon name={'plus-circle'} size={30} color={StyleApp.primaryColor.color} />
       </TouchableOpacity>
       <TouchableOpacity style={{ padding: 2 }} onPress={() => {
         navigation.getChildNavigation('Account').popToTop();

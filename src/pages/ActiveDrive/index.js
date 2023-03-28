@@ -188,7 +188,7 @@ export default class ActiveDrive extends Component {
                 <View style={{ marginVertical: 15, marginHorizontal: 20 }}>
 
                     <View style={{ flexDirection: 'row' }}>
-                        <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.goBack()} />
+                        <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.goBack()} />
 
                         <View style={{ marginLeft: 30 }}>
                             <Text style={[StyleApp.headerText]}>Active Drives</Text>

@@ -255,7 +255,7 @@ export default class Notification extends Component {
 
                 <View style={{ marginHorizontal: 20, marginVertical: 15, flexDirection: 'row', alignItems: 'center' }}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.navigate('Dashboard')} />
+                        <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.navigate('Dashboard')} />
                         <View style={{ marginLeft: 20 }}>
                             <Text style={[StyleApp.headerText]}>Notification</Text>
                             <Text style={[StyleApp.headerSubText]}>Get all your updates over here</Text>

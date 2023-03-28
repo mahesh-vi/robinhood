@@ -246,7 +246,7 @@ export default class UpcomingDriveDetail extends Component {
                 <View style={{ marginHorizontal: 20, marginVertical: 15, }}>
 
                     <View style={{ flexDirection: 'row' }}>
-                        <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.goBack()} />
+                        <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.goBack()} />
 
                         <View style={{ marginLeft: 30 }}>
 

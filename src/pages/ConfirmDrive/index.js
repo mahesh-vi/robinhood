@@ -332,7 +332,7 @@ export default class CreateDrive extends Component {
                 <Loader loading={this.state.loading} />
 
                 <View style={{ marginHorizontal: 20, marginVertical: 15, flexDirection: 'row', alignItems: 'center', }}>
-                    <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.goBack()} />
+                    <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.goBack()} />
                     <View style={{ marginLeft: 30 }}>
                         <Text style={[StyleApp.headerText]}>Confirm Drive</Text>
                         <Text style={[StyleApp.headerSubText]}>Confirm the Food Donation Drive</Text>

@@ -1,4 +1,4 @@
-package com.rha;
+package com.virtueinfo.rhaTS;
 
 import com.facebook.react.ReactActivity;
 

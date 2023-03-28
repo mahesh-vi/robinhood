@@ -161,7 +161,7 @@ export default class Account extends Component {
             <ScrollView style={styles.mainContainer}>
                 <Loader loading={this.state.loading} />
                 <View style={{ marginHorizontal: 20 }}>
-                    {/* <Ionicons name={'ios-arrow-round-back'} size={40} onPress={() => this.props.navigation.goBack()} /> */}
+                    {/* <Ionicons name={'ios-arrow-back'} size={30} onPress={() => this.props.navigation.goBack()} /> */}
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
                         <View style={{ flex: 1 }}>
                             <Text style={[StyleApp.headerText]}>My Profile</Text>

@@ -38,6 +38,17 @@ class App extends Component {
 
         // process the
         global.notificationData = notification.data;
+        const notificationData = notification.data
+          ? JSON.parse(notification.data.moredata)
+          : JSON.parse(notification.moredata);
+        // process the notification
+        // Alert.alert(notification.title,notification.message);
+
+        if (notificationData.type == 'Requested') {
+          NavigationService.navigate('MenuUpcomingDriveDetail', {
+            drive: notificationData,
+          });
+        }
 
         // required on iOS only (see fetchCompletionHandler docs: https://facebook.github.io/react-native/docs/pushnotificationios.html)
         notification.finish(PushNotificationIOS.FetchResult.NoData);
@@ -70,7 +81,7 @@ class App extends Component {
       <SafeAreaView style={styles.container}>
         <RootNavigation
           screenProps={this.props.alert}
-          ref={navigatorRef => {
+          ref={(navigatorRef) => {
             NavigationService.setTopLevelNavigator(navigatorRef);
           }}
         />

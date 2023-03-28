@@ -1,4 +1,4 @@
-package com.rha;
+package com.virtueinfo.rhaTS;
 
 import android.app.Application;
 import android.content.Context;
