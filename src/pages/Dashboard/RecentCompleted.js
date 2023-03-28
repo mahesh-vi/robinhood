@@ -30,17 +30,17 @@ export default class RecentCompleted extends Component {
 
   UNSAFE_componentWillMount() {
     Promise.all([DriveService.getComletedDrive()])
-      .then(res => {
+      .then((res) => {
         this.setState({
           completedDrive: res[0].data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
 
-  onPressDrive = drive => {
+  onPressDrive = (drive) => {
     console.log(drive);
     this.props.navigation.navigate('MyDriveDetail', {
       drive: drive,
@@ -48,10 +48,10 @@ export default class RecentCompleted extends Component {
     // this.setState({selectedDrive:drive, showDrivePopup: true });
   };
 
-  renderVolunteer = item => {
+  renderVolunteer = (item) => {
     const imageUrl = item.image_url
       ? {uri: item.image_url}
-      : require(`../../assets/images/user_male.png`);
+      : require('../../assets/images/user_male.png');
 
     return (
       <Image key={item.id} source={imageUrl} style={[styles.avtarImage]} />
@@ -74,7 +74,7 @@ export default class RecentCompleted extends Component {
           showsHorizontalScrollIndicator={false}
           style={{paddingRight: 10, marginLeft: 10}}>
           {this.state.completedDrive &&
-            this.state.completedDrive.slice(0, 5).map(drive => {
+            this.state.completedDrive.slice(0, 5).map((drive) => {
               return (
                 <TouchableOpacity
                   key={drive.id}
@@ -148,13 +148,12 @@ export default class RecentCompleted extends Component {
                       justifyContent: 'space-between',
                     }}>
                     <View style={{flexDirection: 'row'}}>
-                      {drive.invite_peoples.map(item => {
+                      {drive.invite_peoples.map((item) => {
                         return this.renderVolunteer(item);
                       })}
                     </View>
                     <View
                       style={{
-                        backgroundColor: 'red',
                         alignItems: 'center',
                         justifyContent: 'center',
                         width: 34,
@@ -170,7 +169,7 @@ export default class RecentCompleted extends Component {
               );
             })}
 
-          {/* { this.state.showDrivePopup && 
+          {/* { this.state.showDrivePopup &&
                     <DriveModal driveDetail={this.state.selectedDrive} showModal={this.state.showDrivePopup} onClose={() => { this.setState({ showDrivePopup: false }) }} />
                     } */}
         </ScrollView>

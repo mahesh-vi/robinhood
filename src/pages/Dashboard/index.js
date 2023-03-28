@@ -61,7 +61,7 @@ export default class Dashboard extends Component {
     const user = this.state.userDetail;
     const imageURL = user.image
       ? {uri: user.image}
-      : require(`../../assets/images/user_male.png`);
+      : require('../../assets/images/user_male.png');
     return (
       <View style={styles.mainContainer}>
         <ScrollView style={[styles.mainContainer]}>
@@ -125,7 +125,7 @@ export default class Dashboard extends Component {
                 this.state.recentRobins.map((robin) => {
                   const imageUrl = robin.image_url
                     ? {uri: robin.image_url}
-                    : require(`../../assets/images/user_male.png`);
+                    : require('../../assets/images/user_male.png');
 
                   return (
                     <View style={{marginHorizontal: 5}} key={robin.id}>

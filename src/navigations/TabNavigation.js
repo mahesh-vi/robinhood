@@ -187,7 +187,7 @@ export const AppStack = createBottomTabNavigator(
             />
           );
         },
-        tabBarOnPress: props => {
+        tabBarOnPress: (props) => {
           props.navigation.popToTop();
 
           props.navigation.navigate('Dashboard');
@@ -200,7 +200,7 @@ export const AppStack = createBottomTabNavigator(
         tabBarIcon: ({focused, tintColor}) => {
           return <FontAwesome name={'bell-o'} size={25} color={tintColor} />;
         },
-        tabBarOnPress: props => {
+        tabBarOnPress: (props) => {
           props.navigation.popToTop();
 
           props.navigation.navigate('Notification');
@@ -232,7 +232,7 @@ export const AppStack = createBottomTabNavigator(
             />
           );
         },
-        tabBarOnPress: props => {
+        tabBarOnPress: (props) => {
           props.navigation.popToTop();
 
           props.navigation.navigate('Account');
@@ -245,7 +245,7 @@ export const AppStack = createBottomTabNavigator(
         tabBarIcon: ({focused, tintColor}) => {
           return <FeatherIcon name={'menu'} size={25} color={tintColor} />;
         },
-        tabBarOnPress: props => {
+        tabBarOnPress: (props) => {
           console.log(props);
           props.navigation.popToTop();
 

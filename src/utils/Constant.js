@@ -1,11 +1,11 @@
 // const BaseURL ='http://180.211.96.179/api/';
 const env = 'stage';
 const BaseURL =
-  env == 'stage'
+  env === 'stage'
     ? 'http://94.237.13.69:8080/api/'
     : 'http://94.237.13.69:8080/api/';
 
-export default Contstant = {
+export default {
   loginURL: BaseURL + 'login',
   registerURL: BaseURL + 'register',
   logoutURL: BaseURL + 'logout',

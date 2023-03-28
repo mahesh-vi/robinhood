@@ -91,7 +91,7 @@ export default class Menu extends Component {
                 this.props.navigation.navigate('MyDrives');
               }}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.oval}></View>
+                <View style={styles.oval} />
                 <Text style={styles.menuItemText}>My Drives</Text>
               </View>
             </TouchableOpacity>
@@ -104,7 +104,7 @@ export default class Menu extends Component {
                 this.props.navigation.navigate('UpcomingDrives');
               }}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.oval}></View>
+                <View style={styles.oval} />
                 <Text style={styles.menuItemText}>Upcoming Drives</Text>
               </View>
             </TouchableOpacity>
@@ -117,7 +117,7 @@ export default class Menu extends Component {
                 this.props.navigation.navigate('MyAchivement');
               }}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.oval}></View>
+                <View style={styles.oval} />
                 <Text style={styles.menuItemText}>My Achivements</Text>
               </View>
             </TouchableOpacity>
@@ -130,7 +130,7 @@ export default class Menu extends Component {
                 this.props.navigation.navigate('AboutRha');
               }}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.oval}></View>
+                <View style={styles.oval} />
                 <Text style={styles.menuItemText}>About RHA</Text>
               </View>
             </TouchableOpacity>
@@ -139,7 +139,7 @@ export default class Menu extends Component {
           <View style={{borderBottomWidth: 1, borderBottomColor: '#efefef'}}>
             <TouchableOpacity style={[styles.menuItem]}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.oval}></View>
+                <View style={styles.oval} />
                 <Text style={styles.menuItemText}>Settings</Text>
               </View>
             </TouchableOpacity>
@@ -148,7 +148,7 @@ export default class Menu extends Component {
           <View style={{borderBottomWidth: 1, borderBottomColor: '#efefef'}}>
             <TouchableOpacity style={[styles.menuItem]}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.oval}></View>
+                <View style={styles.oval} />
                 <Text style={styles.menuItemText}>News</Text>
               </View>
             </TouchableOpacity>
@@ -157,7 +157,7 @@ export default class Menu extends Component {
           <View style={{borderBottomWidth: 1, borderBottomColor: '#efefef'}}>
             <TouchableOpacity style={[styles.menuItem]} onPress={this.logout}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.oval}></View>
+                <View style={styles.oval} />
                 <Text style={styles.menuItemText}>Logout</Text>
               </View>
             </TouchableOpacity>

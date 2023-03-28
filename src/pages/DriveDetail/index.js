@@ -51,7 +51,7 @@ export default class DriveDetail extends Component {
     }
   };
 
-  handleIndexChange = index => {
+  handleIndexChange = (index) => {
     this.setState(
       {
         ...this.state,
@@ -67,15 +67,15 @@ export default class DriveDetail extends Component {
     const {zoneId} = this.state.zoneDetail;
     const dur = duration[this.state.selectedIndex];
     DriveService.getOverallSnapshop(zoneId, dur)
-      .then(res => {
+      .then((res) => {
         this.setState({driveSnapshot: res.data});
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
 
-  renderItem = item => {
+  renderItem = (item) => {
     const driveStatus = item.item;
 
     return (
@@ -89,7 +89,8 @@ export default class DriveDetail extends Component {
                   width: 15,
                   height: 15,
                   borderRadius: 20,
-                }}></View>
+                }}
+              />
             </View>
             <View style={{justifyContent: 'center', marginHorizontal: 10}}>
               <Text
@@ -106,22 +107,23 @@ export default class DriveDetail extends Component {
 
         <View style={{flexDirection: 'row'}}>
           <View style={{alignItems: 'center'}}>
-            <View
-              style={{backgroundColor: '#21D1AA', width: 2, height: 20}}></View>
+            <View style={{backgroundColor: '#21D1AA', width: 2, height: 20}} />
             <View
               style={{
                 backgroundColor: '#21D1AA',
                 width: 40,
                 height: 40,
                 borderRadius: 20,
-              }}></View>
+              }}
+            />
             {item.index !== this.state.driveData.drive_status.length - 1 && (
               <View
                 style={{
                   backgroundColor: '#21D1AA',
                   width: 2,
                   height: 20,
-                }}></View>
+                }}
+              />
             )}
           </View>
           <View style={{justifyContent: 'center', marginHorizontal: 10}}>
@@ -148,13 +150,13 @@ export default class DriveDetail extends Component {
     );
   };
 
-  renderRobinItem = item => {
+  renderRobinItem = (item) => {
     const robin = item.item;
     return (
       <View style={{marginBottom: 10}}>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
           <Image
-            source={require(`../../assets/images/avtar.png`)}
+            source={require('../../assets/images/avtar.png')}
             style={[{width: 30, height: 30, borderRadius: 15}]}
           />
           <View style={{marginHorizontal: 10}}>
@@ -182,7 +184,7 @@ export default class DriveDetail extends Component {
 
   render() {
     const {driveData, driveSnapshot} = this.state;
-    const imageUrl = require(`../../assets/images/app_icon.png`);
+    const imageUrl = require('../../assets/images/app_icon.png');
 
     return (
       <ScrollView style={styles.mainContainer}>
@@ -402,7 +404,7 @@ export default class DriveDetail extends Component {
                 <FlatList
                   data={driveData.drive_status}
                   renderItem={this.renderItem.bind(this)}
-                  keyExtractor={item => item.title}
+                  keyExtractor={(item) => item.title}
                   maxHeight={400}
                 />
               )}
@@ -416,7 +418,7 @@ export default class DriveDetail extends Component {
                     <FlatList
                       data={driveData.robins}
                       renderItem={this.renderRobinItem.bind(this)}
-                      keyExtractor={item => item.image_url}
+                      keyExtractor={(item) => item.image_url}
                       maxHeight={400}
                     />
                   </View>

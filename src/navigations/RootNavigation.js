@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  createSwitchNavigator,
-  createAppContainer,
-  HeaderBackButton,
-} from 'react-navigation';
+import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import AuthLoading from '../pages/AuthLoading';
 

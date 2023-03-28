@@ -49,7 +49,7 @@ export default class DashboardDetails extends Component {
     const dur = duration[index];
 
     Promise.all([GeneralService.getTotalDrive(dur)])
-      .then(res => {
+      .then((res) => {
         console.log(res);
 
         this.setState({
@@ -57,14 +57,14 @@ export default class DashboardDetails extends Component {
           selectedZone: selectZone,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
 
     const snapshopDetails = [];
     // async.each(_this.state.zones, function (zone, callback) {
 
-    DriveService.getOverallSnapshop(selectZone.id, dur).then(res => {
+    DriveService.getOverallSnapshop(selectZone.id, dur).then((res) => {
       const zoneSnapShot = {
         zoneId: selectZone.id,
         snapshopDetail: res.data,
@@ -85,7 +85,7 @@ export default class DashboardDetails extends Component {
     // });
   }
 
-  handleIndexChange = index => {
+  handleIndexChange = (index) => {
     this.setState(
       {
         ...this.state,
@@ -102,7 +102,7 @@ export default class DashboardDetails extends Component {
 
   getZones = () => {
     CommonService.getDriveZone()
-      .then(res => {
+      .then((res) => {
         const zones = res.data;
         this.setState({
           zones: res.data,
@@ -110,12 +110,12 @@ export default class DashboardDetails extends Component {
         // this.getSnapShotDetail(zones[0].id, this.state.selectedIndex);
         console.log(res);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
 
-  onChangeZone = zone => {
+  onChangeZone = (zone) => {
     console.log('On change zone', zone);
     this.setState(
       {
@@ -132,7 +132,7 @@ export default class DashboardDetails extends Component {
     const data = this.state.zones || [];
     const imageUrl = global.user.image
       ? {uri: global.user.image}
-      : require(`../../assets/images/app_icon.png`);
+      : require('../../assets/images/app_icon.png');
 
     return (
       <ScrollView style={styles.mainContainer}>
@@ -157,7 +157,7 @@ export default class DashboardDetails extends Component {
 
                                 }}
                             >
-                            
+
                                 <Picker
 
                                     style={{ width: "100%", fontSize: 10, height: 25, width: 130, top: 0, fontSize: 6, color: '#fff' }}
@@ -267,7 +267,7 @@ export default class DashboardDetails extends Component {
           style={{flex: 1, margin: 20}}
           onPress={() => this.props.navigation.navigate('UpcomingDrives')}>
           <Image
-            source={require(`../../assets/images/help_serve_2.png`)}
+            source={require('../../assets/images/help_serve_2.png')}
             style={{width: '90%', height: 110, margin: 20}}
             resizeMode={'stretch'}
           />

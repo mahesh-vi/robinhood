@@ -27,12 +27,12 @@ export default class DashboardStat extends Component {
 
   UNSAFE_componentWillMount() {
     Promise.all([UserService.dashboardCount()])
-      .then(res => {
+      .then((res) => {
         this.setState({
           dashboadDetail: res[0].data,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -122,8 +122,7 @@ export default class DashboardStat extends Component {
                 {dashboadDetail.my_drive}
               </Text>
             </View>
-            <View
-              style={{backgroundColor: '#D8D8D8', width: 1, height: 50}}></View>
+            <View style={{backgroundColor: '#D8D8D8', width: 1, height: 50}} />
             <View style={{flex: 1, padding: 20}}>
               <Text
                 style={[

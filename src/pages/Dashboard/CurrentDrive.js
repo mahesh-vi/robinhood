@@ -69,7 +69,9 @@ export default class CurrentDrive extends Component {
   }
 
   render() {
-    if (!this.state.driveData) return null;
+    if (!this.state.driveData) {
+      return null;
+    }
     return (
       <View
         style={{
@@ -81,7 +83,7 @@ export default class CurrentDrive extends Component {
           width: '100%',
         }}>
         {/* <SectionHeader title="Explore Robinhood" action="Show More" onPressAction={() => {
-                    
+
                 }} /> */}
 
         {/* <Image source={require(`../../assets/images/explore_robin.png`)} style={{ width: "100%" }} /> */}
@@ -115,7 +117,7 @@ export default class CurrentDrive extends Component {
                 source={
                   this.state.driveData.image_url
                     ? {uri: `${this.state.driveData.image_url}`}
-                    : require(`../../assets/images/app_icon.png`)
+                    : require('../../assets/images/app_icon.png')
                 }
                 style={[{width: 50, height: 50, borderRadius: 30}]}
               />
@@ -145,7 +147,7 @@ export default class CurrentDrive extends Component {
                 justifyContent: 'center',
               }}>
               <Image
-                source={require(`../../assets/images/arrow_right_white.png`)}
+                source={require('../../assets/images/arrow_right_white.png')}
               />
             </View>
           </View>

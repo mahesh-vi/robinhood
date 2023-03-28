@@ -200,7 +200,9 @@ export class AlertProvider extends Component {
                     },
                   ]}
                   onPress={() => {
-                    if (ctaOnPress) ctaOnPress();
+                    if (ctaOnPress) {
+                      ctaOnPress();
+                    }
                     this.close();
                   }}>
                   <Text style={[AppStyle.buttonText]}>OK</Text>
@@ -254,7 +256,9 @@ export class AlertProvider extends Component {
                   <TouchableOpacity
                     style={[styles.buttonContainer]}
                     onPress={() => {
-                      if (ctaOnPressCancel) ctaOnPressCancel();
+                      if (ctaOnPressCancel) {
+                        ctaOnPressCancel();
+                      }
                       this.close();
                     }}>
                     <Text
@@ -273,7 +277,9 @@ export class AlertProvider extends Component {
                   <TouchableOpacity
                     style={[styles.buttonContainer]}
                     onPress={() => {
-                      if (ctaOnPress) ctaOnPress();
+                      if (ctaOnPress) {
+                        ctaOnPress();
+                      }
                       this.close();
                     }}>
                     <Text
@@ -326,7 +332,7 @@ export class AlertProvider extends Component {
                     style={[{height: 40}]}
                     value={this.state.textInput}
                     keyboardType={'number-pad'}
-                    onChangeText={text => this.setState({textInput: text})}
+                    onChangeText={(text) => this.setState({textInput: text})}
                   />
                 </View>
                 <View
@@ -338,7 +344,9 @@ export class AlertProvider extends Component {
                   <TouchableOpacity
                     style={[styles.buttonContainer]}
                     onPress={() => {
-                      if (ctaOnPressCancel) ctaOnPressCancel();
+                      if (ctaOnPressCancel) {
+                        ctaOnPressCancel();
+                      }
                       this.setState({textInput: undefined});
                       this.close();
                     }}>
@@ -357,7 +365,9 @@ export class AlertProvider extends Component {
                   <TouchableOpacity
                     style={[styles.buttonContainer]}
                     onPress={() => {
-                      if (ctaOnPress) ctaOnPress(this.state.textInput);
+                      if (ctaOnPress) {
+                        ctaOnPress(this.state.textInput);
+                      }
                       this.setState({textInput: undefined});
                       this.close();
                     }}>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -45,11 +45,11 @@ export default class EditProfile extends Component {
 
   UNSAFE_componentWillMount = () => {
     CommonService.getCountries()
-      .then(res => {
+      .then((res) => {
         this.setState({countriesList: res.data});
         this.onChangeCountries(this.state.userDetail.country.id);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -58,9 +58,9 @@ export default class EditProfile extends Component {
    * @method onChangeCountries
    * @description country picker onChange listener when change value
    */
-  onChangeCountries = countryid => {
+  onChangeCountries = (countryid) => {
     CommonService.getState(countryid)
-      .then(res => {
+      .then((res) => {
         const stateList = res.data;
         this.setState({stateList: stateList});
         const state_id =
@@ -69,7 +69,7 @@ export default class EditProfile extends Component {
             : stateList[0].id;
         this.onChangeState(state_id);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -78,9 +78,9 @@ export default class EditProfile extends Component {
    * @method onChangeState
    * @description state picker onChange listener when change value
    */
-  onChangeState = stateid => {
+  onChangeState = (stateid) => {
     CommonService.getCity(stateid)
-      .then(res => {
+      .then((res) => {
         this.setState({cityList: res.data});
         // this.onChangeCity(this.state.userDetail.city_id);
 
@@ -88,7 +88,7 @@ export default class EditProfile extends Component {
           this.user.city_id == stateid ? this.user.city_id : res.data[0].id;
         this.onChangeCity(city_id);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -97,12 +97,12 @@ export default class EditProfile extends Component {
    * @method onChangeState
    * @description state picker onChange listener when change value
    */
-  onChangeCity = cityid => {
+  onChangeCity = (cityid) => {
     CommonService.getZone(cityid)
-      .then(res => {
+      .then((res) => {
         this.setState({zoneList: res.data});
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -120,7 +120,7 @@ export default class EditProfile extends Component {
         this.setState({loading: true});
 
         Userservice.updateProfile(userDetail, image_uri)
-          .then(res => {
+          .then((res) => {
             console.log('Update Profile', res);
             const {data} = res;
             global.user = data;
@@ -129,12 +129,12 @@ export default class EditProfile extends Component {
             this.setState({loading: false});
             this.props.navigation.goBack();
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
             const {message, errors} = error;
             let errorList = [];
 
-            Object.keys(errors).forEach(item => {
+            Object.keys(errors).forEach((item) => {
               errorList.push(errors[item][0]);
             });
 
@@ -209,7 +209,7 @@ export default class EditProfile extends Component {
    */
   getImage() {
     const _this = this;
-    ImagePicker.showImagePicker(options, response => {
+    ImagePicker.showImagePicker(options, (response) => {
       console.log('Image picker response', response);
       const data = response;
       if (response.didCancel) {
@@ -221,7 +221,7 @@ export default class EditProfile extends Component {
       } else {
         console.log(data);
         let imageData = data;
-        delete imageData['data'];
+        delete imageData.data;
         _this.setState({
           image_uri: imageData,
         });
@@ -234,7 +234,7 @@ export default class EditProfile extends Component {
       ? {uri: this.state.image_uri.uri}
       : this.state.userDetail.image
       ? {uri: this.state.userDetail.image}
-      : require(`../../assets/images/user_male.png`);
+      : require('../../assets/images/user_male.png');
     return (
       <ScrollView style={styles.mainContainer}>
         <Loader loading={this.state.loading} />
@@ -248,7 +248,7 @@ export default class EditProfile extends Component {
             justifyContent: 'space-between',
           }}>
           <Image
-            source={require(`../../assets/images/app_icon.png`)}
+            source={require('../../assets/images/app_icon.png')}
             style={[styles.iconImage]}
             resizeMode={'stretch'}
           />
@@ -275,7 +275,7 @@ export default class EditProfile extends Component {
             placeholder={'First Name'}
             style={styles.inputContainer}
             value={this.state.userDetail.firstname}
-            onChangeText={text =>
+            onChangeText={(text) =>
               this.setState({
                 userDetail: Object.assign(this.state.userDetail, {
                   firstname: text,
@@ -295,7 +295,7 @@ export default class EditProfile extends Component {
             placeholder={'Last Name'}
             style={styles.inputContainer}
             value={this.state.userDetail.lastname}
-            onChangeText={text =>
+            onChangeText={(text) =>
               this.setState({
                 userDetail: Object.assign(this.state.userDetail, {
                   lastname: text,
@@ -317,7 +317,7 @@ export default class EditProfile extends Component {
             keyboardType={'number-pad'}
             value={this.state.userDetail.phone}
             maxLength={10}
-            onChangeText={value => {
+            onChangeText={(value) => {
               if (/^\d+$/.test(value.toString())) {
                 this.setState({
                   userDetail: Object.assign(this.state.userDetail, {
@@ -358,7 +358,7 @@ export default class EditProfile extends Component {
                 styles.inputContainer,
               ]}
               removeIcon={true}
-              onSelect={date => {
+              onSelect={(date) => {
                 this.setState({
                   userDetail: Object.assign(this.state.userDetail, {bod: date}),
                 });
@@ -375,7 +375,7 @@ export default class EditProfile extends Component {
             placeholder={'Country'}
             data={this.state.countriesList}
             value={this.state.userDetail.country_id}
-            onChange={item => {
+            onChange={(item) => {
               this.setState({
                 userDetail: Object.assign(this.state.userDetail, {
                   country_id: item,
@@ -389,7 +389,7 @@ export default class EditProfile extends Component {
             placeholder={'State'}
             data={this.state.stateList}
             value={this.state.userDetail.state_id}
-            onChange={item => {
+            onChange={(item) => {
               this.setState({
                 userDetail: Object.assign(this.state.userDetail, {
                   state_id: item,
@@ -403,7 +403,7 @@ export default class EditProfile extends Component {
             placeholder={'City'}
             data={this.state.cityList}
             value={this.state.userDetail.city_id}
-            onChange={item => {
+            onChange={(item) => {
               console.log(item);
               this.setState({
                 userDetail: Object.assign(this.state.userDetail, {
@@ -418,7 +418,7 @@ export default class EditProfile extends Component {
             placeholder={'Zone'}
             data={this.state.zoneList}
             value={this.state.userDetail.zone_id}
-            onChange={item => {
+            onChange={(item) => {
               console.log(item);
               this.setState({
                 userDetail: Object.assign(this.state.userDetail, {
@@ -435,7 +435,7 @@ export default class EditProfile extends Component {
             autoCapitalize="none"
             style={styles.inputContainer}
             value={this.state.userDetail.email}
-            onChangeText={text =>
+            onChangeText={(text) =>
               this.setState({
                 userDetail: Object.assign(this.state.userDetail, {email: text}),
               })

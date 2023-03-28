@@ -1,356 +1,361 @@
-
 import axios from 'axios';
-axios.defaults.headers.post['Accept'] = 'application/json';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 import Contstant from '../utils/Constant';
 import DriveService from './DriveService';
 import Constant from '../utils/Constant';
 import moment from 'moment';
 
+axios.defaults.headers.post.Accept = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 class UserService {
+  getInviteUserList() {
+    const url =
+      Contstant.inviteURL + '/' + global.user.id + '/' + global.user.city_id;
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
+          reject(error);
+        });
+    });
+  }
 
+  dashboardCount() {
+    const {city_id, zone_id, id} = global.user;
+    const requestData = {
+      city_id: city_id,
+      zone_id: zone_id,
+      user_id: id,
+    };
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url: Contstant.dashboradCountURL,
+        data: requestData,
+      })
+        .then((response) => {
+          // handle success
 
-    getInviteUserList() {
-        const url = Contstant.inviteURL + '/' + global.user.id + '/' + global.user.city_id
-        return (new Promise((resolve, reject) => {
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-                reject(error);
-            });
-        }));
+          reject(error);
+        });
+    });
+  }
+
+  updateProfile(userDetail, image) {
+    const requestData = {
+      user_id: global.user.id,
+      firstname: userDetail.firstname,
+      lastname: userDetail.lastname,
+      email: userDetail.email,
+      phone: userDetail.phone,
+      country_id: userDetail.country_id,
+      state_id: userDetail.state_id,
+      city_id: userDetail.city_id,
+      zone_id: userDetail.zone_id,
+      old_image: global.user.image,
+      type: userDetail.type,
+      bod: userDetail.bod ? moment(userDetail.bod).format('YYYY-MM-DD') : '',
+    };
+
+    let formData = requestData;
+    if (image) {
+      formData = DriveService.createFormData(image, requestData);
+    } else {
+      formData.image = null;
     }
+    const config = {
+      'Content-Type': image ? 'multipart/form-data' : 'application/json',
+    };
 
-    dashboardCount() {
-        const { city_id, zone_id, id } = global.user;
-        const requestData = {
-            "city_id": city_id,
-            "zone_id": zone_id,
-            "user_id": id
-        }
-        return (new Promise((resolve, reject) => {
-            axios({
-                method: 'POST',
-                url: Contstant.dashboradCountURL,
-                data:requestData
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url: Contstant.profileURL,
+        headers: config,
+        data: formData,
+      })
+        .then((response) => {
+          // handle success
 
-                reject(error);
-            });
-        }));
-    }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
-    updateProfile(userDetail,image) {
-        const requestData = {
-            "user_id": global.user.id,
-            "firstname": userDetail.firstname,
-            "lastname": userDetail.lastname,
-             "email": userDetail.email,
-            "phone": userDetail.phone,
-            "country_id": userDetail.country_id,
-            "state_id": userDetail.state_id,
-            "city_id": userDetail.city_id,
-            "zone_id": userDetail.zone_id,
-            "old_image": global.user.image,
-            "type":userDetail.type,
-            "bod":userDetail.bod?moment(userDetail.bod).format('YYYY-MM-DD'):""
-        }
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
+  getMyDrives() {
+    const url = Constant.myDrivesURL + '/' + global.user.id;
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-        let formData = requestData;
-        if (image) {
-            formData = DriveService.createFormData(image, requestData);
-        }else{
-            formData.image=null;
-        }
-        const config = { 'Content-Type': image?`multipart/form-data`:'application/json' } ;
-         
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
-        return (new Promise((resolve, reject) => {
+  startDrive(driveId) {
+    const url = Constant.startMyDriveURL + '/' + global.user.id + '/' + driveId;
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-            axios({
-                method: 'POST',
-                url: Contstant.profileURL,
-                headers: config,
-                data: formData
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
+  endDrive(driveId, serveCount) {
+    const url = Constant.endDriveURL + '/' + global.user.id + '/' + driveId;
+    const requestData = {
+      count_serve: serveCount,
+    };
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url: url,
+        data: requestData,
+      })
+        .then((response) => {
+          // handle success
 
-    getMyDrives(){
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
-        const url = Constant.myDrivesURL+ "/"+ global.user.id;
-        return (new Promise((resolve, reject) => {
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
-            axios({
-                method: 'GET',
-                url:url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+  achivements() {
+    const url = Constant.achivementsURL + '/' + global.user.id;
 
-    startDrive(driveId){
-        const url = Constant.startMyDriveURL + "/" + global.user.id+ "/" + driveId ;
-        return (new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-            axios({
-                method: 'GET',
-                url:url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
-    endDrive(driveId,serveCount){
-        const url = Constant.endDriveURL + "/" + global.user.id+ "/" + driveId ;
-        const requestData = {
-            "count_serve": serveCount
-        }
-        return (new Promise((resolve, reject) => {
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
-            axios({
-                method: 'POST',
-                url:url,
-                data:requestData
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+  getCurrentDrive() {
+    const url = Constant.currentDriveURL + '/' + global.user.id;
 
-    achivements(){
-        const url = Constant.achivementsURL + "/" + global.user.id ;
-      
-        return (new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-            axios({
-                method: 'GET',
-                url:url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
-    getCurrentDrive(){
-        const url = Constant.currentDriveURL + "/" + global.user.id ;
-      
-        return (new Promise((resolve, reject) => {
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
-            axios({
-                method: 'GET',
-                url:url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+  getUserNotification() {
+    const url = Constant.notificationURL + '/' + global.user.id;
 
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-    getUserNotification(){
-        const url = Constant.notificationURL + "/" + global.user.id ;
-      
-        return (new Promise((resolve, reject) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
-            axios({
-                method: 'GET',
-                url:url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
+  getRequestedDrive() {
+    const url = Constant.requestedDriveURL + '/' + global.user.id;
 
-    getRequestedDrive(){
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
-         const url = Constant.requestedDriveURL + "/" + global.user.id ;
-      
-        return (new Promise((resolve, reject) => {
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
-            axios({
-                method: 'GET',
-                url:url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                
-                if (error.response) {
-                    reject(error.response.data);
-                }
-                if (!error.status)
-                    error.message = "Check your internet connection and try again";
-                reject(error);
-            });
-        }));
-    }
+  acceptDrive(driveId) {
+    const url = Constant.driveAcceptURL + '/' + driveId + '/' + global.user.id;
 
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-    acceptDrive(driveId){
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 
-        const url = Constant.driveAcceptURL + "/" + driveId + "/"+ global.user.id ;
-     
-       return (new Promise((resolve, reject) => {
+  rejectDrive(driveId) {
+    const url = Constant.driveRejectURL + '/' + driveId + '/' + global.user.id;
 
-           axios({
-               method: 'GET',
-               url:url
-           }).then((response) => {
-               // handle success
-               
-               resolve(response.data);
-           }).catch((error) => {
-               // handle error
-               
-               if (error.response) {
-                   reject(error.response.data);
-               }
-               if (!error.status)
-                   error.message = "Check your internet connection and try again";
-               reject(error);
-           });
-       }));
-   }
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
 
-  rejectDrive(driveId){
-
-
-    const url = Constant.driveRejectURL + "/" + driveId + "/"+ global.user.id ;
- 
-   return (new Promise((resolve, reject) => {
-
-       axios({
-           method: 'GET',
-           url:url
-       }).then((response) => {
-           // handle success
-           
-           resolve(response.data);
-       }).catch((error) => {
-           // handle error
-           
-           if (error.response) {
-               reject(error.response.data);
-           }
-           if (!error.status)
-               error.message = "Check your internet connection and try again";
-           reject(error);
-       });
-   }));
+          if (error.response) {
+            reject(error.response.data);
+          }
+          if (!error.status) {
+            error.message = 'Check your internet connection and try again';
+          }
+          reject(error);
+        });
+    });
+  }
 }
 
-}
-
-export default (new UserService());
+export default new UserService();

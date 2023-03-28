@@ -74,13 +74,13 @@ export default class RecentCompleted extends Component {
     //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 10000 });
 
     GeolocationService.getCurrentPosition(
-      async location => {
+      async (location) => {
         let token = await AsyncStorage.multiSet([
           ['lastLocation', JSON.stringify(location)],
         ]);
         this.getDrives(location);
       },
-      error => {
+      (error) => {
         // See error code charts below.
         console.log('Geo Location Service Error', error.code, error.message);
       },
@@ -90,9 +90,9 @@ export default class RecentCompleted extends Component {
 
   getDrives(location) {
     DriveService.nearDrive(location)
-      .then(res => {
+      .then((res) => {
         const drives = res.data;
-        const filterDrives = drives.filter(drive => drive.distance < 5);
+        const filterDrives = drives.filter((drive) => drive.distance < 5);
         if (filterDrives.length > 0) {
           this.setState({
             nearDrives: filterDrives,
@@ -103,12 +103,12 @@ export default class RecentCompleted extends Component {
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
 
-  onPressDrive = drive => {
+  onPressDrive = (drive) => {
     console.log(drive);
     this.setState({selectedDrive: drive, showDriveMap: true});
   };
@@ -128,7 +128,7 @@ export default class RecentCompleted extends Component {
           showsHorizontalScrollIndicator={false}
           style={{paddingHorizontal: 10}}>
           {this.state.nearDrives &&
-            this.state.nearDrives.slice(0, 5).map(drive => {
+            this.state.nearDrives.slice(0, 5).map((drive) => {
               return (
                 <TouchableWithoutFeedback
                   key={drive.id}
@@ -153,7 +153,7 @@ export default class RecentCompleted extends Component {
                       source={
                         drive.image
                           ? {uri: `${drive.image}`}
-                          : require(`../../assets/images/app_icon.png`)
+                          : require('../../assets/images/app_icon.png')
                       }
                       style={[{height: 180, width: 135, borderRadius: 10}]}
                     />

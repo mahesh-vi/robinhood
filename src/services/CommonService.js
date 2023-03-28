@@ -1,270 +1,248 @@
-
 import axios from 'axios';
 // axios.defaults.headers.post['Accept'] = 'application/json';
 // axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 import Contstant from '../utils/Constant';
 class CommonService {
+  getCountries() {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: Contstant.countriesURL,
+      })
+        .then((response) => {
+          // handle success
 
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
+          reject(error);
+        });
+    });
+  }
 
+  getState(countryid) {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.stateURL + countryid;
 
-    getCountries() {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-        return (new Promise((resolve, reject) => {
-            axios({
-                method: 'GET',
-                url: Contstant.countriesURL
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-                reject(error);
-            });
-        }));
-    }
+          reject(error);
+        });
+    });
+  }
 
-    getState(countryid) {
+  getCity(stateid) {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.cityURL + stateid;
 
-        return (new Promise((resolve, reject) => {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-            const url = Contstant.stateURL + countryid;
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+          reject(error);
+        });
+    });
+  }
 
-                reject(error);
-            });
-        }));
-    }
+  getZone(zoneid) {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.zoneURL + zoneid;
 
-    getCity(stateid) {
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-        return (new Promise((resolve, reject) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-            const url = Contstant.cityURL + stateid;
+          reject(error);
+        });
+    });
+  }
 
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+  getFoodType() {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.foodtypeURL;
 
-                reject(error);
-            });
-        }));
-    }
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-    getZone(zoneid) {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-        return (new Promise((resolve, reject) => {
+          reject(error);
+        });
+    });
+  }
 
-            const url = Contstant.zoneURL + zoneid;
+  getDriveZone() {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.zoneSelectionURL + '/' + global.user.id;
 
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-                reject(error);
-            });
-        }));
-    }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-    getFoodType() {
-        return (new Promise((resolve, reject) => {
+          reject(error);
+        });
+    });
+  }
 
-            const url = Contstant.foodtypeURL;
+  getDriveCancelReason() {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.cancelDriveReasonsURL;
 
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-                reject(error);
-            });
-        }));
-    }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-    getFoodType() {
-        return (new Promise((resolve, reject) => {
+          reject(error);
+        });
+    });
+  }
 
-            const url = Contstant.foodtypeURL;
+  getDonerList(string) {
+    return new Promise((resolve, reject) => {
+      const url = string
+        ? Contstant.donerListURL + '/' + string
+        : Contstant.donerListURL;
 
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-                reject(error);
-            });
-        }));
-    }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
+          reject(error);
+        });
+    });
+  }
 
-    getDriveZone(){
-        return (new Promise((resolve, reject) => {
+  getCMS(slug) {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.cmsURL + '/' + slug;
 
-            const url = Contstant.zoneSelectionURL+"/"+global.user.id;
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-                reject(error);
-            });
-        }));
-    }
+          reject(error);
+        });
+    });
+  }
 
-    getDriveCancelReason(){
-        return (new Promise((resolve, reject) => {
+  getJoinReason() {
+    return new Promise((resolve, reject) => {
+      const url = Contstant.joinReasonURL;
 
-            const url = Contstant.cancelDriveReasonsURL;
+      axios({
+        method: 'GET',
+        url: url,
+      })
+        .then((response) => {
+          // handle success
 
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          // handle error
+          if (error.response) {
+            reject(error.response.data);
+          }
 
-                reject(error);
-            });
-        }));
-    }
-
-    getDonerList(string){
-        
-        return (new Promise((resolve, reject) => {
-
-            const url = string?Contstant.donerListURL + "/"+string:Contstant.donerListURL;
-
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
-
-                reject(error);
-            });
-        }));
-    }
-
-    getCMS(slug){
-        return (new Promise((resolve, reject) => {
-
-            const url = Contstant.cmsURL + "/"+slug;
-
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
-
-                reject(error);
-            });
-        }));
-    }
-
-    getJoinReason(){
-        return (new Promise((resolve, reject) => {
-
-            const url = Contstant.joinReasonURL;
-
-            axios({
-                method: 'GET',
-                url: url
-            }).then((response) => {
-                // handle success
-                
-                resolve(response.data);
-            }).catch((error) => {
-                // handle error
-                if (error.response) {
-                    reject(error.response.data);
-                }
-
-                reject(error);
-            });
-        }));
-    }
-
+          reject(error);
+        });
+    });
+  }
 }
 
-export default (new CommonService());
+export default new CommonService();

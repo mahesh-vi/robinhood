@@ -76,7 +76,7 @@ export default class CompleteDriveModal extends Component {
                 this.props.navigation.replace('UpcomingDrives');
               }}>
               <Image
-                source={require(`../../assets/images/help_serve_2.png`)}
+                source={require('../../assets/images/help_serve_2.png')}
                 style={{
                   width: '90%',
                   height: 120,
